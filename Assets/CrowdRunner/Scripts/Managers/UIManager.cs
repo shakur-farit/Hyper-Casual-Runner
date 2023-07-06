@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider progressBar;
     [SerializeField] private TMP_Text levelText;
 
+    [SerializeField] private TMP_Text crowdCounter;
+
 
     private void OnEnable()
     {
@@ -89,9 +91,12 @@ public class UIManager : MonoBehaviour
 
     private void GameStateChangedCallback(GameState gameState)
     {
-        if(gameState == GameState.GameOver)
+        if (gameState == GameState.GameOver)
             ShowGameOverPanel();
-        else if(gameState == GameState.LevelComplete)
+        else if (gameState == GameState.LevelComplete)
+        {
+            DataManager.instance.AddCoins(int.Parse(crowdCounter.text));
             ShowLevelCompletePanel();
+        }
     }
 }

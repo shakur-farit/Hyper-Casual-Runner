@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 6305290401104949628}
   - component: {fileID: 6305290401104949629}
   m_Layer: 0
-  m_Name: Chunk_Short_Coins_05
+  m_Name: Chunk_Short_Coins_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

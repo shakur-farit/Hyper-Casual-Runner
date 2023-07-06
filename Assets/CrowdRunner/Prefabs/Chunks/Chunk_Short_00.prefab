@@ -161,11 +161,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719476904831530065, guid: 0fa50444b075396459d197bc77d5c920, type: 3}
       propertyPath: leftDoorBonusAmount
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1719476904831530065, guid: 0fa50444b075396459d197bc77d5c920, type: 3}
       propertyPath: rightDoorBonusAmount
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1719476904831530070, guid: 0fa50444b075396459d197bc77d5c920, type: 3}
       propertyPath: m_RootOrder

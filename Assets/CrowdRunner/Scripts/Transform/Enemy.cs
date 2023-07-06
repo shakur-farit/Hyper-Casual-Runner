@@ -62,6 +62,10 @@ public class Enemy : MonoBehaviour
     private void StartRunningTowardTarget()
     {
         enemyState = EnemyState.Running;
+
+        if (GetComponent<Animator>() == null)
+            return;
+
         GetComponent<Animator>().Play("Run");
     }
 
