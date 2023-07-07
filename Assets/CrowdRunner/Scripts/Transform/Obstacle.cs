@@ -8,10 +8,13 @@ public class Obstacle : MonoBehaviour
 
     private Transform targetRunner;
 
+    [SerializeField] private float rotSpeed;
+
     // Update is called once per frame
     void Update()
     {
         DestroyDetectedRunner();
+        AutoRotate();
     }
 
     private void DestroyDetectedRunner()
@@ -30,5 +33,10 @@ public class Obstacle : MonoBehaviour
                 Destroy(targetRunner.gameObject);
             }
         }
+    }
+
+    private void AutoRotate()
+    {
+        transform.Rotate(1 * rotSpeed, 0, 0);
     }
 }
