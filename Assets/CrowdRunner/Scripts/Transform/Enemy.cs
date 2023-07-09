@@ -5,8 +5,8 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private float searchRadius;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] protected float searchRadius;
+    [SerializeField] protected float moveSpeed;
 
     private EnemyState enemyState = EnemyState.None;
     private Transform targetRunner;
@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void SearchForTarget()
+    protected virtual void SearchForTarget()
     {
         
         Collider[] detectedColliders = Physics.OverlapSphere(transform.position, searchRadius);
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void StartRunningTowardTarget()
+    protected void StartRunningTowardTarget()
     {
         enemyState = EnemyState.Running;
 
@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
         GetComponent<Animator>().Play("Run");
     }
 
-    private void RunTowardstarget()
+    protected virtual void RunTowardstarget()
     {
         if (targetRunner == null)
             return;
