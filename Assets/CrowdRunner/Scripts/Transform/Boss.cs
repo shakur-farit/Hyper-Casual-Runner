@@ -6,7 +6,7 @@ public class Boss : Enemy
 {
     [SerializeField] private int damage = 10;
 
-    private List<Transform> targetRunners;
+    private List<Transform> runnersToDestroy;
 
     protected override void SearchForTarget()
     {
@@ -16,43 +16,29 @@ public class Boss : Enemy
         {
             if (detectedColliders[i].TryGetComponent(out Runner runner))
             {
-                if (runner.IsTarget())
-                    continue;
-
-                runner.SetTarget();
-
-                
-                    targetRunners.Add(runner.transform);
-                    Debug.Log("Add to list");
-                    Debug.Log(targetRunners.Count);
-                
+                Debug.Log(detectedColliders.Length);
+                targetRunner = runner.transform;
 
                 StartRunningTowardTarget();
-                return;
+
+                enemyState = EnemyState.Idle;
             }
         }
     }
 
-    protected override void RunTowardstarget()
+    protected override void RunTowardTarget()
     {
-        if (targetRunners == null)
+        if (targetRunner == null)
             return;
 
-        for(int i = 0; i < targetRunners.Count; i++)
+        transform.position = Vector3.MoveTowards(transform.position, targetRunner.position, Time.deltaTime * moveSpeed);
+
+        if (Vector3.Distance(transform.position, targetRunner.position) < 0.1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetRunners[i].position, Time.deltaTime * moveSpeed);
+            onRunnerDied?.Invoke();
 
-            if (Vector3.Distance(transform.position, targetRunners[i].position) < 0.1f)
-            {
-                onRunnerDied?.Invoke();
-
-                Destroy(targetRunners[i].gameObject);               
-            }
+            Destroy(targetRunner.gameObject);
+            //Destroy(gameObject);
         }
-
-        if (targetRunners == null)
-            return;
-
-        Destroy(gameObject);
     }
 }

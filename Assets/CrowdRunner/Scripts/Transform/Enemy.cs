@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float searchRadius;
     [SerializeField] protected float moveSpeed;
 
-    private EnemyState enemyState = EnemyState.None;
-    private Transform targetRunner;
+    protected EnemyState enemyState = EnemyState.None;
+    protected Transform targetRunner;
 
     public static Action onRunnerDied;
 
@@ -18,13 +18,13 @@ public class Enemy : MonoBehaviour
         enemyState = EnemyState.Idle;
     }
 
-    private void Update()
+    protected void Update()
     {
         ManageEnemyState();
         
     }
 
-    private void ManageEnemyState()
+    protected void ManageEnemyState()
     {
         switch (enemyState)
         {
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
                 break;
 
             case EnemyState.Running:
-                RunTowardstarget();
+                RunTowardTarget();
                 break;
         }
     }
@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected void StartRunningTowardTarget()
+    protected virtual void StartRunningTowardTarget()
     {
         enemyState = EnemyState.Running;
 
@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
         GetComponent<Animator>().Play("Run");
     }
 
-    protected virtual void RunTowardstarget()
+    protected virtual void RunTowardTarget()
     {
         if (targetRunner == null)
             return;

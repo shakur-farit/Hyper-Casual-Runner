@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchRadius: 5
-  moveSpeed: 15
+  moveSpeed: 20
   damage: 10
 --- !u!1 &6019807411587979840
 GameObject:
