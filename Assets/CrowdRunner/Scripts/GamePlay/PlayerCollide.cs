@@ -47,6 +47,12 @@ public class PlayerCollide : MonoBehaviour
 
                 DataManager.instance.AddCoins(1);
             }
+            else if(colliders[i].GetComponent<Boss>())
+            {
+                crowdSystem.RemoveRunners(colliders[i].GetComponent<Boss>().damage);
+
+                Destroy(colliders[i].gameObject);
+            }
         }
     }
 }

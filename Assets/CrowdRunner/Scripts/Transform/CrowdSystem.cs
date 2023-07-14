@@ -80,7 +80,7 @@ public class CrowdSystem : MonoBehaviour
         DecreaseRadius();
     }
 
-    private void RemoveRunners(int amount)
+    public void RemoveRunners(int amount)
     {
         if(amount>runnersParent.childCount)
             amount = runnersParent.childCount;

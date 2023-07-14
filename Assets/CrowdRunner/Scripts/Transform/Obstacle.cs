@@ -8,13 +8,28 @@ public class Obstacle : MonoBehaviour
 
     private Transform targetRunner;
 
-    [SerializeField] private float rotSpeed;
+    [SerializeField] private bool isMoving;
+    [SerializeField] private bool isRotate;
 
-    // Update is called once per frame
+    [SerializeField] private float rotSpeed;
+    [SerializeField] private float moveSpeed;
+
+    [SerializeField] private GameObject[] wayPoints;
+    private int currentPoint = 0;
+    private float WPradius = 1;
+
+    private void FixedUpdate()
+    {
+        if (isRotate)
+            AutoRotate();
+
+        if (isMoving)
+            AutoMove();
+    }
+
     void Update()
     {
         DestroyDetectedRunner();
-        AutoRotate();
     }
 
     private void DestroyDetectedRunner()
@@ -38,5 +53,16 @@ public class Obstacle : MonoBehaviour
     private void AutoRotate()
     {
         transform.Rotate(1 * rotSpeed, 0, 0);
+    }
+
+    private void AutoMove()
+    {
+        if (Vector3.Distance(wayPoints[currentPoint].transform.position, transform.position) < WPradius)
+        {
+            currentPoint++;
+            if (currentPoint >= wayPoints.Length)
+                currentPoint = 0;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, wayPoints[currentPoint].transform.position, Time.deltaTime * moveSpeed);
     }
 }
