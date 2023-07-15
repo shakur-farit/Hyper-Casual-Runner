@@ -6,7 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float searchRadius;
 
-    private Transform targetRunner;
+    //private Transform targetRunner;
 
     [SerializeField] private bool isMoving;
     [SerializeField] private bool isRotate;
@@ -43,9 +43,7 @@ public class Obstacle : MonoBehaviour
             if (detectedColliders[i].TryGetComponent(out Runner runner))
             {
                 Debug.Log(detectedColliders.Length);
-                targetRunner = runner.transform;
-
-                Destroy(targetRunner.gameObject);
+                runner.DestroyRunner();
             }
         }
     }

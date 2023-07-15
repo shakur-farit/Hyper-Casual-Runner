@@ -9,15 +9,15 @@ public class VibrationManager : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerCollide.onDoorsHit -= Vibrate;
-        Enemy.onRunnerDied -= Vibrate;
-        GameManager.onGameStateChanged -= GameStateChangedCallback;
+        PlayerCollide.onDoorsHit += Vibrate;
+        Runner.onRunnerDied += Vibrate;
+        GameManager.onGameStateChanged += GameStateChangedCallback;
     }
 
     private void OnDisable()
     {
         PlayerCollide.onDoorsHit -= Vibrate;
-        Enemy.onRunnerDied -= Vibrate;
+        Runner.onRunnerDied -= Vibrate;
         GameManager.onGameStateChanged -= GameStateChangedCallback;
     }
 
@@ -29,8 +29,8 @@ public class VibrationManager : MonoBehaviour
 
     private void Vibrate()
     {
-        if(isVibration)
-            Taptic.Light();
+        if (isVibration)
+            Handheld.Vibrate();
     }
 
     public void DisableVibrations()

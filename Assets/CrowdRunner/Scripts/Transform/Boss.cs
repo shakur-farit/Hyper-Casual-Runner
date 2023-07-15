@@ -11,6 +11,6 @@ public class Boss : Enemy
         if (targetRunner == null)
             return;
 
-        transform.position = Vector3.MoveTowards(transform.position, targetRunner.position, Time.deltaTime * moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, targetRunner.transform.position, Time.deltaTime * moveSpeed);
     }
 }

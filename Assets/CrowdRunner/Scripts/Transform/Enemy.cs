@@ -9,9 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float moveSpeed;
 
     protected EnemyState enemyState = EnemyState.None;
-    protected Transform targetRunner;
+    protected Runner targetRunner;
 
-    public static Action onRunnerDied;
+    //public static Action onRunnerDied;
 
     private void Start()
     {
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
                     continue;
 
                 runner.SetTarget();
-                targetRunner = runner.transform;
+                targetRunner = runner;
 
                 StartRunningTowardTarget();
                 return;
@@ -74,13 +74,13 @@ public class Enemy : MonoBehaviour
         if (targetRunner == null)
             return;
 
-        transform.position = Vector3.MoveTowards(transform.position, targetRunner.position, Time.deltaTime * moveSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, targetRunner.transform.position, Time.deltaTime * moveSpeed);
 
-        if(Vector3.Distance(transform.position, targetRunner.position) < 0.1f)
+        if(Vector3.Distance(transform.position, targetRunner.transform.position) < 0.1f)
         {
-            onRunnerDied?.Invoke();
+            //onRunnerDied?.Invoke();
 
-            Destroy(targetRunner.gameObject);
+            targetRunner.DestroyRunner();
             Destroy(gameObject);
         }
     }
