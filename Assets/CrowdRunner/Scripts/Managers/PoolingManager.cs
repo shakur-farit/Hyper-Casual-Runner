@@ -11,7 +11,7 @@ public class PoolingManager : MonoBehaviour
     public GameObject runnersParent;
 
     private Dictionary<int, Queue<GameObject>> poolQueue = new Dictionary<int, Queue<GameObject>>();
-    private Dictionary<int, bool> growAnleBool = new Dictionary<int, bool>();
+    private Dictionary<int, bool> growAbleBool = new Dictionary<int, bool>();
     private Dictionary<int, Transform> parents = new Dictionary<int, Transform>();
 
     private void Awake()
@@ -29,54 +29,36 @@ public class PoolingManager : MonoBehaviour
 
         for (int i = 0; i < poolItems.Length; i++)
         {
-            if (poolItems[i].poolObject.name == "Runner")
+            GameObject uniquePool = new GameObject(poolItems[i].poolObject.name + " Group");
+            uniquePool.transform.SetParent(poolGroup.transform);
+
+            int objId = poolItems[i].poolObject.GetInstanceID();
+            poolItems[i].poolObject.SetActive(false);
+
+            poolQueue.Add(objId, new Queue<GameObject>());
+            growAbleBool.Add(objId, poolItems[i].growAble);
+            parents.Add(objId, uniquePool.transform);
+
+            for (int j = 0; j < poolItems[i].poolAmount; j++)
             {
-                int objId = poolItems[i].poolObject.GetInstanceID();
-                poolItems[i].poolObject.SetActive(false);
-
-                poolQueue.Add(objId, new Queue<GameObject>());
-                growAnleBool.Add(objId, poolItems[i].growAble);
-                parents.Add(objId, runnersParent.transform);
-
-                for (int j = 0; j < poolItems[i].poolAmount; j++)
-                {
-                    GameObject temp = Instantiate(poolItems[i].poolObject, runnersParent.transform);
-                    poolQueue[objId].Enqueue(temp);
-                }
-            }
-            else
-            {
-                GameObject uniquePool = new GameObject(poolItems[i].poolObject.name + " Group");
-                uniquePool.transform.SetParent(poolGroup.transform);
-
-                int objId = poolItems[i].poolObject.GetInstanceID();
-                poolItems[i].poolObject.SetActive(false);
-
-                poolQueue.Add(objId, new Queue<GameObject>());
-                growAnleBool.Add(objId, poolItems[i].growAble);
-                parents.Add(objId, uniquePool.transform);
-
-                for (int j = 0; j < poolItems[i].poolAmount; j++)
-                {
-                    GameObject temp = Instantiate(poolItems[i].poolObject, uniquePool.transform);
-                    poolQueue[objId].Enqueue(temp);
-                }
+                GameObject temp = Instantiate(poolItems[i].poolObject, uniquePool.transform);
+                poolQueue[objId].Enqueue(temp);
             }
         }
     }
 
     public GameObject UseObject(GameObject obj, Vector3 pos, Quaternion rot)
     {
-        int objId = obj.GetInstanceID();
+        int objID = obj.GetInstanceID();
 
-        GameObject temp = poolQueue[objId].Dequeue();
+        GameObject temp = poolQueue[objID].Dequeue();
 
         if (temp.activeInHierarchy)
         {
-            if (growAnleBool[objId])
+            if (growAbleBool[objID])
             {
-                poolQueue[objId].Enqueue(temp);
-                temp = Instantiate(obj, parents[objId]);
+                poolQueue[objID].Enqueue(temp);
+                temp = Instantiate(obj, parents[objID]);
                 temp.transform.position = pos;
                 temp.transform.rotation = rot;
                 temp.SetActive(true);
@@ -93,7 +75,11 @@ public class PoolingManager : MonoBehaviour
             temp.SetActive(true);
         }
 
-        poolQueue[objId].Enqueue(temp);
+        poolQueue[objID].Enqueue(temp);
+
+        if (temp.GetComponent<Runner>() != null)
+            temp.transform.SetParent(runnersParent.transform);
+
         return temp;
     }
 
@@ -106,6 +92,11 @@ public class PoolingManager : MonoBehaviour
         else
         {
             StartCoroutine(DelayReturn(obj, delay));
+        }
+
+        if (obj.GetComponent<Runner>() != null)
+        {
+            obj.transform.SetParent(GameObject.Find("Runner Group").transform);
         }
     }
 
