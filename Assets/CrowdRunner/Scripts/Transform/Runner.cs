@@ -22,6 +22,8 @@ public class Runner : MonoBehaviour
     public void DestroyRunner()
     {
         onRunnerDied?.Invoke();
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        PoolingManager.instance.ReturnObject(gameObject);
     }
 }

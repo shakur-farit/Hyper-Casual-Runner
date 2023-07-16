@@ -21,6 +21,7 @@ public class PlayerCollide : MonoBehaviour
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, crowdSystem.GetCrowdRadius());
 
+
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].TryGetComponent(out Doors doors))
@@ -49,7 +50,17 @@ public class PlayerCollide : MonoBehaviour
             }
             else if(colliders[i].GetComponent<Boss>())
             {
-                crowdSystem.RemoveRunners(colliders[i].GetComponent<Boss>().damage);
+
+                for (int j = 0; j < colliders[i].GetComponent<Boss>().damage; j++)
+                {
+                    if (colliders[j] == null)
+                        return;
+
+                    if (colliders[j].TryGetComponent(out Runner runner))
+                    {
+                        runner.DestroyRunner();
+                    }
+                }
 
                 Destroy(colliders[i].gameObject);
             }

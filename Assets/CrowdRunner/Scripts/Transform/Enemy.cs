@@ -11,8 +11,6 @@ public class Enemy : MonoBehaviour
     protected EnemyState enemyState = EnemyState.None;
     protected Runner targetRunner;
 
-    //public static Action onRunnerDied;
-
     private void Start()
     {
         enemyState = EnemyState.Idle;
@@ -78,8 +76,6 @@ public class Enemy : MonoBehaviour
 
         if(Vector3.Distance(transform.position, targetRunner.transform.position) < 0.1f)
         {
-            //onRunnerDied?.Invoke();
-
             targetRunner.DestroyRunner();
             Destroy(gameObject);
         }
