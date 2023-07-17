@@ -12,8 +12,11 @@ public class CrowdSystem : MonoBehaviour
 
     private void Start()
     {
-        PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
-        //AddRunners(1);
+        for (int i = 0; i < 30; i++)
+        {
+            PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
+        }
+        
     }
 
     void Update()
@@ -79,7 +82,6 @@ public class CrowdSystem : MonoBehaviour
     private void AddRunners(int amount)
     {
         for (int i = 0; i < amount; i++)
-            //Instantiate(runnerPrefab, runnersParent);
             PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
 
         animator.Run();

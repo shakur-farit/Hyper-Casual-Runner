@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class PlayerCollide : MonoBehaviour
 {
@@ -50,16 +51,16 @@ public class PlayerCollide : MonoBehaviour
             }
             else if(colliders[i].GetComponent<Boss>())
             {
+                var runnersCollider = colliders.Where(x => x.GetComponent<Runner>()).ToList<Collider>();
+
+                Debug.Log(runnersCollider.Count);
 
                 for (int j = 0; j < colliders[i].GetComponent<Boss>().damage; j++)
                 {
-                    if (colliders[j] == null)
+                    if (runnersCollider[j] == null)
                         return;
 
-                    if (colliders[j].TryGetComponent(out Runner runner))
-                    {
-                        runner.DestroyRunner();
-                    }
+                    runnersCollider[j].GetComponent<Runner>().DestroyRunner();
                 }
 
                 Destroy(colliders[i].gameObject);

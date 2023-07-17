@@ -6,8 +6,6 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float searchRadius;
 
-    //private Transform targetRunner;
-
     [SerializeField] private bool isMoving;
     [SerializeField] private bool isRotate;
 
