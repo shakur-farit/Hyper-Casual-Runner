@@ -95,8 +95,10 @@ public class UIManager : MonoBehaviour
             ShowGameOverPanel();
         else if (gameState == GameState.LevelComplete)
         {
-            DataManager.instance.AddCoins(int.Parse(crowdCounter.text));
             ShowLevelCompletePanel();
+            AddCoinsAnimation.instance.RewardPileOfCoin(int.Parse(crowdCounter.text));
+            DataManager.instance.AddCoins(int.Parse(crowdCounter.text));
+            
         }
     }
 }

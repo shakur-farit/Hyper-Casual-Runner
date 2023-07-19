@@ -62,12 +62,12 @@ public class AddCoinsAnimation : MonoBehaviour
         {
             pileOfCoinsParent.transform.GetChild(i).DOScale(1f, 0.3f).SetDelay(delay).SetEase(Ease.OutBack);
 
-            pileOfCoinsParent.transform.GetChild(i).GetComponent<RectTransform>().DOAnchorPos(finishPos, 1f)
-                .SetDelay(delay + 0.5f).SetEase(Ease.InBack);
+            pileOfCoinsParent.transform.GetChild(i).GetComponent<RectTransform>().DOAnchorPos(finishPos, 0.3f)
+                .SetDelay(delay).SetEase(Ease.InBack);
 
-            pileOfCoinsParent.transform.GetChild(i).DOScale(0f, 0.3f).SetDelay(delay + 1.45f).SetEase(Ease.OutBack);
+            pileOfCoinsParent.transform.GetChild(i).DOScale(0f, 0.3f).SetDelay(delay + 0.3f).SetEase(Ease.OutBack);
 
-            delay += 0.2f;
+            delay += 0.1f;
         }
     }
 

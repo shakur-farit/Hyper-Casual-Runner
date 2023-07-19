@@ -32,8 +32,6 @@ public class DataManager : MonoBehaviour
 
         PlayerPrefs.SetInt("Coins", coins);
 
-        AddCoinsAnimation.instance.RewardPileOfCoin(amount);
-
         SmoothlyUpdate();
     }
 
@@ -61,7 +59,7 @@ public class DataManager : MonoBehaviour
         foreach (TMP_Text coinText in coinsText)
         {
             int currentCoinsValue = int.Parse(coinText.text);
-            DOTween.To(() => currentCoinsValue, x => currentCoinsValue = x, coins, 0.5f)
+            DOTween.To(() => currentCoinsValue, x => currentCoinsValue = x, coins, 1f)
                 .OnUpdate(() => coinText.text = currentCoinsValue.ToString())
                 .SetEase(Ease.OutSine);
         }
