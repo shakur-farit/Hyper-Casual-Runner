@@ -50,11 +50,10 @@ public class PlayerCollide : MonoBehaviour
             }
             else if(colliders[i].GetComponent<Boss>())
             {
+                int damage = colliders[i].GetComponent<Boss>().damage;
 
-                for (int j = 0; j < colliders[i].GetComponent<Boss>().damage; j++)
+                for (int j = 0; j < Mathf.Min(damage, colliders.Length); j++)
                 {
-                    if (colliders[j] == null)
-                        return;
 
                     if (colliders[j].TryGetComponent(out Runner runner))
                     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using DG.Tweening;
 
 public class DataManager : MonoBehaviour
 {
@@ -29,16 +30,40 @@ public class DataManager : MonoBehaviour
     {
         coins += amount;
 
-        UpdateCoinsText();
+        PlayerPrefs.SetInt("Coins", coins);
+
+        AddCoinsAnimation.instance.RewardPileOfCoin(amount);
+
+        SmoothlyUpdate();
+    }
+
+    public void RemoveCoins(int amount)
+    {
+        coins -= amount;
+        if (coins < 0)
+            coins = 0;
 
         PlayerPrefs.SetInt("Coins", coins);
+
+        SmoothlyUpdate();
     }
 
     private void UpdateCoinsText()
     {
-        foreach(TMP_Text coinText in coinsText)
+        foreach (TMP_Text coinText in coinsText)
         {
             coinText.text = coins.ToString();
+        }
+    }
+
+    private void SmoothlyUpdate()
+    {
+        foreach (TMP_Text coinText in coinsText)
+        {
+            int currentCoinsValue = int.Parse(coinText.text);
+            DOTween.To(() => currentCoinsValue, x => currentCoinsValue = x, coins, 0.5f)
+                .OnUpdate(() => coinText.text = currentCoinsValue.ToString())
+                .SetEase(Ease.OutSine);
         }
     }
 }
