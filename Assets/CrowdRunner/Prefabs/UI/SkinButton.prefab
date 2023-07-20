@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 927460152231626064}
   - component: {fileID: 927460152231626065}
   m_Layer: 0
-  m_Name: LockIcon
+  m_Name: LockImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 927460152753928626}
   - component: {fileID: 927460152753928627}
   - component: {fileID: 927460152753928624}
+  - component: {fileID: 6507538137500697642}
   m_Layer: 0
   m_Name: SkinButton
   m_TagString: Untagged
@@ -216,6 +217,22 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 9.99, y: -11.29}
   m_UseGraphicAlpha: 1
+--- !u!114 &6507538137500697642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 927460152753928630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5ad99d3ce7eb42b2bdd307d9f9ef959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinButton: {fileID: 927460152753928627}
+  skinImage: {fileID: 927460153135079906}
+  lockImage: {fileID: 927460152231626071}
+  selector: {fileID: 927460153225123150}
 --- !u!1 &927460153135079904
 GameObject:
   m_ObjectHideFlags: 0
