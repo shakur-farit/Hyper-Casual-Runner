@@ -1905,9 +1905,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1760950451}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: PlayButtonPressed
+      - m_Target: {fileID: 523439809}
+        m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
+        m_MethodName: PurchaseSkin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4059,6 +4059,8 @@ MonoBehaviour:
   - {fileID: 2091793272}
   - {fileID: 748077626}
   - {fileID: 1192564257}
+  - {fileID: 1192564257}
+  - {fileID: 1841496434}
 --- !u!1 &1034890179
 GameObject:
   m_ObjectHideFlags: 0
@@ -8815,7 +8817,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 927460152231626071, guid: e6b97e326e843944fbdec97fc619dfe8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 927460152753928625, guid: e6b97e326e843944fbdec97fc619dfe8, type: 3}
       propertyPath: m_Pivot.x
@@ -8903,15 +8905,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927460152753928626, guid: e6b97e326e843944fbdec97fc619dfe8, type: 3}
       propertyPath: m_Color.b
-      value: 0.23535958
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 927460152753928626, guid: e6b97e326e843944fbdec97fc619dfe8, type: 3}
       propertyPath: m_Color.g
-      value: 0.23535958
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 927460152753928626, guid: e6b97e326e843944fbdec97fc619dfe8, type: 3}
       propertyPath: m_Color.r
-      value: 0.38679248
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 927460152753928627, guid: e6b97e326e843944fbdec97fc619dfe8, type: 3}
       propertyPath: m_Interactable
