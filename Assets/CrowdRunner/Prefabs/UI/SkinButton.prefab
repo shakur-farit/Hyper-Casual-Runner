@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -233,6 +233,7 @@ MonoBehaviour:
   skinImage: {fileID: 927460153135079906}
   lockImage: {fileID: 927460152231626071}
   selector: {fileID: 927460153225123150}
+  skinPrice: 10
 --- !u!1 &927460153135079904
 GameObject:
   m_ObjectHideFlags: 0

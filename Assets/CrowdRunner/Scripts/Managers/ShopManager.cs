@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private SkinButton[] skinButtons;
-    [SerializeField] private Sprite[] skins;
-    
+    [SerializeField] private TMP_Text purchaseButtonPriceText;
+
+    public int selectedSkin = 0;
+
     void Start()
     {
         ConfigureButtons();
@@ -27,7 +28,7 @@ public class ShopManager : MonoBehaviour
         {
             bool unlocked = PlayerPrefs.GetInt("skinButton" + i) == 1;
 
-            skinButtons[i].Configure(skins[i], unlocked);
+            skinButtons[i].Configure(unlocked);
 
             int skinIndex = i;
 
@@ -41,20 +42,16 @@ public class ShopManager : MonoBehaviour
         skinButtons[skinIndex].Unlocked();
     }
 
-    private void UnlockSkin(SkinButton skinButton)
-    {
-        int skinIndex = skinButton.transform.GetSiblingIndex();
-        UnlockSkin(skinIndex);
-    }
-
     private void SelectSkin(int skinIndex)
     {
-        //Debug.Log("Skin " + skinIndex + "has been selceted");
-
         for (int i = 0; i < skinButtons.Length; i++)
         {
             if (skinIndex == i)
+            {
                 skinButtons[i].Selcet();
+                purchaseButtonPriceText.text = skinButtons[i].GetSkinPrice().ToString();
+                selectedSkin = i;
+            }
             else
                 skinButtons[i].Deselect();
         }
@@ -62,20 +59,12 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseSkin()
     {
-        List<SkinButton> skinButtonList = new List<SkinButton>();
-
-        for (int i = 0; i < skinButtons.Length; i++)
-            if (!skinButtons[i].IsUnlocked())
-                skinButtonList.Add(skinButtons[i]);
-
-//        Debug.Log(skinButtonList[2]);
-
-        if (skinButtonList.Count <= 0)
+        if (!skinButtons[selectedSkin].IsUnlocked())
+        {
+            UnlockSkin(selectedSkin);
+            Debug.Log("Unlocked " + selectedSkin + " button");
+        }
+        else
             return;
-
-        SkinButton randomSkinButton = skinButtonList[Random.Range(0, skinButtonList.Count)];
-
-        UnlockSkin(randomSkinButton);
-        SelectSkin(randomSkinButton.transform.GetSiblingIndex());
     }
 }
