@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System;
+using System.Linq;
 
 public class PlayerCollide : MonoBehaviour
 {
@@ -52,13 +53,14 @@ public class PlayerCollide : MonoBehaviour
             {
                 int damage = colliders[i].GetComponent<Boss>().damage;
 
-                for (int j = 0; j < Mathf.Min(damage, colliders.Length); j++)
-                {
+                List<Runner> runners = colliders
+                    .Select(collider => collider.GetComponent<Runner>())
+                    .Where(runner => runner != null)
+                    .ToList();
 
-                    if (colliders[j].TryGetComponent(out Runner runner))
-                    {
-                        runner.DestroyRunner();
-                    }
+                for (int k = 0; k < damage && k < runners.Count; k++)
+                {
+                    runners[k].DestroyRunner();
                 }
 
                 Destroy(colliders[i].gameObject);

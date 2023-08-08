@@ -11,6 +11,8 @@ public class SkinButton : MonoBehaviour
     [SerializeField] private GameObject selector;
     [SerializeField] private int skinPrice = 10;
 
+    public int SkinPrice { get { return skinPrice; } }
+
     private bool isUnlocked = false;
 
     public void Configure(bool unlocked)
@@ -53,10 +55,5 @@ public class SkinButton : MonoBehaviour
     public bool IsUnlocked()
     {
         return isUnlocked;
-    }
-
-    public int GetSkinPrice()
-    {
-        return skinPrice;
     }
 }

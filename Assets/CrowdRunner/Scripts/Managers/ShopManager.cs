@@ -49,7 +49,7 @@ public class ShopManager : MonoBehaviour
             if (skinIndex == i)
             {
                 skinButtons[i].Selcet();
-                purchaseButtonPriceText.text = skinButtons[i].GetSkinPrice().ToString();
+                purchaseButtonPriceText.text = skinButtons[i].SkinPrice.ToString();
                 selectedSkin = i;
             }
             else
@@ -59,9 +59,13 @@ public class ShopManager : MonoBehaviour
 
     public void PurchaseSkin()
     {
+        if (DataManager.instance.Coins < skinButtons[selectedSkin].SkinPrice)
+            return;
+
         if (!skinButtons[selectedSkin].IsUnlocked())
         {
             UnlockSkin(selectedSkin);
+            DataManager.instance.RemoveCoins(skinButtons[selectedSkin].SkinPrice);
             Debug.Log("Unlocked " + selectedSkin + " button");
         }
         else

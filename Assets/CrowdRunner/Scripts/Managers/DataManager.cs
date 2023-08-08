@@ -11,6 +11,8 @@ public class DataManager : MonoBehaviour
     [SerializeField] private TMP_Text[] coinsText;
     private int coins;
 
+    public int Coins { get { return coins; } }
+
     private void Awake()
     {
         if(instance == null)

@@ -10,10 +10,13 @@ public class CrowdSystem : MonoBehaviour
     [SerializeField] private float radius;
     [SerializeField] private float angle;
 
+    [SerializeField] private int crowdAmountOnStart;
+
+    public int CrowdAmountOnStart { set { crowdAmountOnStart = value; } }
+
     private void Start()
     {
-        PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
-        //AddRunners(1);
+        CrowdOnStart();
     }
 
     void Update()
@@ -142,6 +145,14 @@ public class CrowdSystem : MonoBehaviour
         else
         {
             radius = 0.7f;
+        }
+    }
+
+    public void CrowdOnStart()
+    {
+        for (int i = 0; i < crowdAmountOnStart; i++)
+        {
+            PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
         }
     }
 }

@@ -2894,7 +2894,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1500
+  m_text: '0
 
 '
   m_isRightToLeft: 0
@@ -4198,7 +4198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levels:
-  - {fileID: 11400000, guid: 61b46acf6ccc24749a9bd40947ed1a44, type: 2}
+  - {fileID: 11400000, guid: 9e07d9b41b71d714eba0b8f36bda1909, type: 2}
   - {fileID: 11400000, guid: f76ee1805479fc241b0a15ec1fbc57f1, type: 2}
   - {fileID: 11400000, guid: 2091d542d0de180438d2c9c52adca347, type: 2}
   - {fileID: 11400000, guid: 7bd3319836d934142a1f596d033c2e07, type: 2}
@@ -6558,7 +6558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6812,6 +6812,7 @@ MonoBehaviour:
   runnerPrefab: {fileID: 3372415187165485685, guid: bf647a5055b36ee45a2a6c479d433c1d, type: 3}
   radius: 0.7
   angle: 151.8
+  crowdAmountOnStart: 35
 --- !u!114 &1680847108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9073,7 +9074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7485991348696871897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 4.12, z: -0.31000042}
+  m_LocalPosition: {x: 1.76, y: 4.12, z: -0.31000042}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9122,7 +9123,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0b318c2a764b6934aada60670ac55f34, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bcabd11610135364e8a0661bf6239eeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9150,7 +9151,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.04, y: 0.28}
+  m_AnchoredPosition: {x: -0.04, y: 0.53}
   m_SizeDelta: {x: 2.5, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7485991348696871897
