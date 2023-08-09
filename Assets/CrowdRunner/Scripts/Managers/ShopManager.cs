@@ -6,6 +6,9 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private SkinButton[] skinButtons;
     [SerializeField] private TMP_Text purchaseButtonPriceText;
 
+    [SerializeField] private GameObject purchaseButton;
+    [SerializeField] private GameObject useButton;
+
     public int selectedSkin = 0;
 
     void Start()
@@ -15,10 +18,7 @@ public class ShopManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            UnlockSkin(Random.Range(0, skinButtons.Length));
-        if (Input.GetKeyDown(KeyCode.D))
-            PlayerPrefs.DeleteAll();
+        ButtonUpdate();
     }
 
 
@@ -36,7 +36,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void UnlockSkin(int skinIndex)
+    private void UnlockSkin(int skinIndex)
     {
         PlayerPrefs.SetInt("skinButton" + skinIndex, 1);
         skinButtons[skinIndex].Unlocked();
@@ -70,5 +70,19 @@ public class ShopManager : MonoBehaviour
         }
         else
             return;
+    }
+
+    private void ButtonUpdate()
+    {
+        if (skinButtons[selectedSkin].IsUnlocked())
+        {
+            purchaseButton.SetActive(false);
+            useButton.SetActive(true);
+        }
+        else
+        {
+            purchaseButton.SetActive(true);
+            useButton.SetActive(false);
+        }
     }
 }
