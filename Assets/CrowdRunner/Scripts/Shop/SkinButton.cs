@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +12,14 @@ public class SkinButton : MonoBehaviour
 
     public int SkinPrice { get { return skinPrice; } }
 
-    private bool isUnlocked = false;
+    [SerializeField] private bool isUnlocked = false;
+
+    public bool IsUnlocked { get { return isUnlocked; } }
+    public Button GetButton { get { return skinButton; } }
 
     public void Configure(bool unlocked)
     {
-        this.isUnlocked = unlocked;
+        isUnlocked = unlocked;
 
         if (unlocked)
             Unlocked();
@@ -45,15 +47,5 @@ public class SkinButton : MonoBehaviour
     public void Deselect()
     {
         selector.SetActive(false);
-    }
-
-    public Button GetButton()
-    {
-        return skinButton;
-    }
-
-    public bool IsUnlocked()
-    {
-        return isUnlocked;
     }
 }

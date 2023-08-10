@@ -13,6 +13,7 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
+        UnlockOnStart();
         ConfigureButtons();
     }
 
@@ -32,7 +33,7 @@ public class ShopManager : MonoBehaviour
 
             int skinIndex = i;
 
-            skinButtons[i].GetButton().onClick.AddListener(() => SelectSkin(skinIndex));
+            skinButtons[i].GetButton.onClick.AddListener(() => SelectSkin(skinIndex));
         }
     }
 
@@ -62,7 +63,7 @@ public class ShopManager : MonoBehaviour
         if (DataManager.instance.Coins < skinButtons[selectedSkin].SkinPrice)
             return;
 
-        if (!skinButtons[selectedSkin].IsUnlocked())
+        if (!skinButtons[selectedSkin].IsUnlocked)
         {
             UnlockSkin(selectedSkin);
             DataManager.instance.RemoveCoins(skinButtons[selectedSkin].SkinPrice);
@@ -74,7 +75,7 @@ public class ShopManager : MonoBehaviour
 
     private void ButtonUpdate()
     {
-        if (skinButtons[selectedSkin].IsUnlocked())
+        if (skinButtons[selectedSkin].IsUnlocked)
         {
             purchaseButton.SetActive(false);
             useButton.SetActive(true);
@@ -83,6 +84,15 @@ public class ShopManager : MonoBehaviour
         {
             purchaseButton.SetActive(true);
             useButton.SetActive(false);
+        }
+    }
+
+    private void UnlockOnStart()
+    {
+        for (int i = 0; i < skinButtons.Length; i++)
+        {
+            if (skinButtons[i].IsUnlocked)
+                UnlockSkin(i);
         }
     }
 }
