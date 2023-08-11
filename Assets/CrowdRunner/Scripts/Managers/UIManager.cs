@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject levelCompletePanel;
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject shopPanel;
 
     [SerializeField] private Slider progressBar;
     [SerializeField] private TMP_Text levelText;
@@ -35,7 +36,8 @@ public class UIManager : MonoBehaviour
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(false);
         levelCompletePanel.SetActive(false);
-        settingsPanel.SetActive(false);
+        HideSettingsPanel();
+        HideShopPanel();
 
         levelText.text = "Level " + (ChunkManager.instance.GetLevel() + 1);
     }
@@ -87,6 +89,16 @@ public class UIManager : MonoBehaviour
     public void HideSettingsPanel()
     {
         settingsPanel.SetActive(false);
+    }
+
+    public void ShowShopPanel()
+    {
+        shopPanel.SetActive(true);
+    }
+
+    public void HideShopPanel()
+    {
+        shopPanel.SetActive(false);
     }
 
     private void GameStateChangedCallback(GameState gameState)
