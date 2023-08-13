@@ -10,12 +10,12 @@ public class SkinButton : MonoBehaviour
     [SerializeField] private GameObject selector;
     [SerializeField] private int skinPrice = 10;
 
-    public int SkinPrice { get { return skinPrice; } }
+    public int SkinPrice => skinPrice;
 
     [SerializeField] private bool isUnlocked = false;
 
-    public bool IsUnlocked { get { return isUnlocked; } }
-    public Button GetButton { get { return skinButton; } }
+    public bool IsUnlocked => isUnlocked;
+    public Button GetButton => skinButton;
 
     public void Configure(bool unlocked)
     {

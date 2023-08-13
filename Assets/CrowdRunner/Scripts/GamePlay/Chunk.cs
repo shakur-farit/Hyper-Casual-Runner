@@ -6,10 +6,7 @@ public class Chunk : MonoBehaviour
 {
     [SerializeField] private Vector3 size;
 
-    public float GetLength()
-    {
-        return size.z;
-    }
+    public Vector3 GetLength => size;
 
     public void OnDrawGizmos()
     {

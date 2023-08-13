@@ -21,8 +21,6 @@ public class PoolingManager : MonoBehaviour
         PoolInit();
     }
 
-
-
     private void PoolInit()
     {
         GameObject poolGroup = new GameObject("Pool Group");

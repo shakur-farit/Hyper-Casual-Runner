@@ -9,9 +9,10 @@ public class DataManager : MonoBehaviour
     public static DataManager instance;
 
     [SerializeField] private TMP_Text[] coinsText;
+
     private int coins;
 
-    public int Coins { get { return coins; } }
+    public int Coins => coins;
 
     private void Awake()
     {

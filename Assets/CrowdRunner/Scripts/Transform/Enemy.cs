@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
         {
             if (detectedColliders[i].TryGetComponent(out Runner runner))
             {
-                if (runner.IsTarget())                
+                if (runner.IsTarget)                
                     continue;
 
                 runner.SetTarget();

@@ -50,11 +50,11 @@ public class ChunkManager : MonoBehaviour
             chunkToCreate = chunks[i];
 
             if (i > 0)
-                chunkPosition.z += chunkToCreate.GetLength() / 2;
+                chunkPosition.z += chunkToCreate.GetLength.z / 2;
 
             chunkInstance =  Instantiate(chunkToCreate, chunkPosition, Quaternion.identity, transform);
 
-            chunkPosition.z += chunkInstance.GetLength() / 2;
+            chunkPosition.z += chunkInstance.GetLength.z / 2;
         }
     }
 
