@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkinButton : MonoBehaviour
+public class ShopButton : MonoBehaviour
 {
-    [SerializeField] private Button skinButton;
+    [SerializeField] protected Button button;
     [SerializeField] private GameObject lockImage;
-    [SerializeField] private GameObject selector;
-    [SerializeField] private int skinPrice = 10;
+    [SerializeField] protected GameObject selector;
+    [SerializeField] protected int price = 10;
 
-    public int SkinPrice => skinPrice;
+    public int Price => price;
 
     [SerializeField] private bool isUnlocked = false;
 
     public bool IsUnlocked => isUnlocked;
-    public Button GetButton => skinButton;
+    public Button GetButton => button;
 
     public void Configure(bool unlocked)
     {

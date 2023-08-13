@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    [SerializeField] private SkinButton[] skinButtons;
+    [SerializeField] private ShopButton[] shopButtons;
     [SerializeField] private TMP_Text purchaseButtonPriceText;
 
     [SerializeField] private GameObject purchaseButton;
     [SerializeField] private GameObject useButton;
+
+    [SerializeField] private PlayerSelector playerSelector;
 
     private int selectedSkinIndex = 0;
 
@@ -20,49 +22,49 @@ public class ShopManager : MonoBehaviour
 
     private void ConfigureButtons()
     {
-        for (int i = 0; i < skinButtons.Length; i++)
+        for (int i = 0; i < shopButtons.Length; i++)
         {
-            bool unlocked = PlayerPrefs.GetInt("skinButton" + i) == 1;
+            bool unlocked = PlayerPrefs.GetInt("shopButton" + i) == 1;
 
-            skinButtons[i].Configure(unlocked);
+            shopButtons[i].Configure(unlocked);
 
             int skinIndex = i;
 
-            skinButtons[i].GetButton.onClick.AddListener(() => SelectSkin(skinIndex));
+            shopButtons[i].GetButton.onClick.AddListener(() => SelectSkin(skinIndex));
         }
     }
 
     private void UnlockSkin(int skinIndex)
     {
-        PlayerPrefs.SetInt("skinButton" + skinIndex, 1);
-        skinButtons[skinIndex].Unlocked();
+        PlayerPrefs.SetInt("shopButton" + skinIndex, 1);
+        shopButtons[skinIndex].Unlocked();
     }
 
     private void SelectSkin(int skinIndex)
     {
-        for (int i = 0; i < skinButtons.Length; i++)
+        for (int i = 0; i < shopButtons.Length; i++)
         {
             if (skinIndex == i)
             {
-                skinButtons[i].Selcet();
-                purchaseButtonPriceText.text = skinButtons[i].SkinPrice.ToString();
+                shopButtons[i].Selcet();
+                purchaseButtonPriceText.text = shopButtons[i].Price.ToString();
                 ButtonUpdate(i);
                 selectedSkinIndex = i;
             }
             else
-                skinButtons[i].Deselect();
+                shopButtons[i].Deselect();
         }
     }
 
     public void PurchaseSkin()
     {
-        if (DataManager.instance.Coins < skinButtons[selectedSkinIndex].SkinPrice)
+        if (DataManager.instance.Coins < shopButtons[selectedSkinIndex].Price)
             return;
 
-        if (!skinButtons[selectedSkinIndex].IsUnlocked)
+        if (!shopButtons[selectedSkinIndex].IsUnlocked)
         {
             UnlockSkin(selectedSkinIndex);
-            DataManager.instance.RemoveCoins(skinButtons[selectedSkinIndex].SkinPrice);
+            DataManager.instance.RemoveCoins(shopButtons[selectedSkinIndex].Price);
             Debug.Log("Unlocked " + selectedSkinIndex + " button");
             ButtonUpdate(selectedSkinIndex);
         }
@@ -72,7 +74,7 @@ public class ShopManager : MonoBehaviour
 
     private void ButtonUpdate(int index)
     {
-        if (skinButtons[index].IsUnlocked)
+        if (shopButtons[index].IsUnlocked)
         {
             purchaseButton.SetActive(false);
             useButton.SetActive(true);
@@ -86,10 +88,18 @@ public class ShopManager : MonoBehaviour
 
     private void UnlockOnStart()
     {
-        for (int i = 0; i < skinButtons.Length; i++)
+        for (int i = 0; i < shopButtons.Length; i++)
         {
-            if (skinButtons[i].IsUnlocked)
+            if (shopButtons[i].IsUnlocked)
                 UnlockSkin(i);
         }
+    }
+
+    public void UseButton()
+    {
+        if (shopButtons[selectedSkinIndex].GetComponent<IncreaseCrowdButton>() != null)
+            shopButtons[selectedSkinIndex].GetComponent<IncreaseCrowdButton>().IncreaseCrowd();
+        else
+            playerSelector.SelectSkin(selectedSkinIndex);
     }
 }
