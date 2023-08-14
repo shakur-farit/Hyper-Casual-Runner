@@ -12,11 +12,11 @@ public class CrowdSystem : MonoBehaviour
 
     [SerializeField] private int crowdAmountOnStart;
 
-    public int CrowdAmountOnStart { set { crowdAmountOnStart = value; } }
+    //public int CrowdAmountOnStart { get { return crowdAmountOnStart; }  set { crowdAmountOnStart = value; } }
 
     private void Start()
     {
-        CrowdOnStart();
+        CrowdOnStart(crowdAmountOnStart);
     }
 
     void Update()
@@ -82,7 +82,6 @@ public class CrowdSystem : MonoBehaviour
     private void AddRunners(int amount)
     {
         for (int i = 0; i < amount; i++)
-            //Instantiate(runnerPrefab, runnersParent);
             PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
 
         animator.Run();
@@ -148,9 +147,9 @@ public class CrowdSystem : MonoBehaviour
         }
     }
 
-    public void CrowdOnStart()
+    public void CrowdOnStart(int increaseAmount)
     {
-        for (int i = 0; i < crowdAmountOnStart; i++)
+        for (int i = 0; i < increaseAmount; i++)
         {
             PoolingManager.instance.UseObject(runnerPrefab, runnersParent.position, Quaternion.identity);
         }

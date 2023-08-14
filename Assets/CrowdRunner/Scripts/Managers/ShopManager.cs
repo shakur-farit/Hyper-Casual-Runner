@@ -1,15 +1,20 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopManager : MonoBehaviour
 {
     [SerializeField] private ShopButton[] shopButtons;
     [SerializeField] private TMP_Text purchaseButtonPriceText;
+    [SerializeField] private TMP_Text useButtonPriceText;
 
     [SerializeField] private GameObject purchaseButton;
     [SerializeField] private GameObject useButton;
+    [SerializeField] private GameObject useWithPriceButton;
 
     [SerializeField] private PlayerSelector playerSelector;
+    [SerializeField] private CrowdSystem crowdSystem;
 
     private int selectedSkinIndex = 0;
 
@@ -47,9 +52,14 @@ public class ShopManager : MonoBehaviour
             if (skinIndex == i)
             {
                 shopButtons[i].Selcet();
-                purchaseButtonPriceText.text = shopButtons[i].Price.ToString();
-                ButtonUpdate(i);
+                
+                if(shopButtons[i].GetComponent<IncreaseCrowdButton>())
+                    useButtonPriceText.text = shopButtons[i].Price.ToString();
+                else
+                    purchaseButtonPriceText.text = shopButtons[i].Price.ToString();
+                
                 selectedSkinIndex = i;
+                ButtonUpdate(i);
             }
             else
                 shopButtons[i].Deselect();
@@ -74,15 +84,49 @@ public class ShopManager : MonoBehaviour
 
     private void ButtonUpdate(int index)
     {
-        if (shopButtons[index].IsUnlocked)
+        if(shopButtons[index].IsUnlocked && shopButtons[index].GetComponent<IncreaseCrowdButton>())
+        {
+            purchaseButton.SetActive(false);
+            useButton.SetActive(false);
+            useWithPriceButton.SetActive(true);
+
+            if (DataManager.instance.Coins < shopButtons[selectedSkinIndex].Price)
+            {
+                useWithPriceButton.GetComponent<Button>().interactable = false;
+                useWithPriceButton.GetComponent<ButtonTextItems>().label.SetActive(false);
+                useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(true);
+            }
+            else
+            {
+                useWithPriceButton.GetComponent<Button>().interactable = true;
+                useWithPriceButton.GetComponent<ButtonTextItems>().label.SetActive(true);
+                useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(false);
+            }
+        }
+        else if(shopButtons[index].IsUnlocked)
         {
             purchaseButton.SetActive(false);
             useButton.SetActive(true);
+            useWithPriceButton.SetActive(false);
         }
         else
         {
             purchaseButton.SetActive(true);
             useButton.SetActive(false);
+            useWithPriceButton.SetActive(false);
+
+            if (DataManager.instance.Coins < shopButtons[selectedSkinIndex].Price)
+            {
+                purchaseButton.GetComponent<Button>().interactable = false;
+                purchaseButton.GetComponent<ButtonTextItems>().label.SetActive(false);
+                purchaseButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(true);
+            }
+            else
+            {
+                purchaseButton.GetComponent<Button>().interactable = true;
+                purchaseButton.GetComponent<ButtonTextItems>().label.SetActive(true);
+                purchaseButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(false);
+            }
         }
     }
 
@@ -97,9 +141,11 @@ public class ShopManager : MonoBehaviour
 
     public void UseButton()
     {
-        if (shopButtons[selectedSkinIndex].GetComponent<IncreaseCrowdButton>() != null)
-            shopButtons[selectedSkinIndex].GetComponent<IncreaseCrowdButton>().IncreaseCrowd();
-        else
-            playerSelector.SelectSkin(selectedSkinIndex);
+        playerSelector.SelectSkin(selectedSkinIndex);
+    }
+
+    public void UseWithPriceButton()
+    {
+        shopButtons[selectedSkinIndex].GetComponent<IncreaseCrowdButton>().IncreaseCrowd();
     }
 }
