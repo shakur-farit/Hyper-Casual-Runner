@@ -80,4 +80,9 @@ public class AddCoinsAnimation : MonoBehaviour
             temp.transform.localScale = new Vector3(0f,0f,0f);
         }
     }
+
+    private void KillTween()
+    {
+        DOTween.Sequence().Kill();
+    }
 }

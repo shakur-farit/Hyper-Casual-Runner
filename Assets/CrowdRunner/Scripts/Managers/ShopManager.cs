@@ -15,6 +15,7 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] private PlayerSelector playerSelector;
     [SerializeField] private CrowdSystem crowdSystem;
+    [SerializeField] private SkinUpgrade skinUpgrade;
 
     private int selectedSkinIndex = 0;
 
@@ -142,6 +143,7 @@ public class ShopManager : MonoBehaviour
     public void UseButton()
     {
         playerSelector.SelectSkin(selectedSkinIndex);
+        skinUpgrade.Upgrade(selectedSkinIndex);
     }
 
     public void UseWithPriceButton()
