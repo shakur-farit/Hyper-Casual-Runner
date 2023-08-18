@@ -84,11 +84,13 @@ public class UIManager : MonoBehaviour
     public void ShowSettingsPanel()
     {
         settingsPanel.SetActive(true);
+        GameManager.instance.Pause();
     }
 
     public void HideSettingsPanel()
     {
         settingsPanel.SetActive(false);
+        GameManager.instance.Unpause();
     }
 
     public void ShowShopPanel()

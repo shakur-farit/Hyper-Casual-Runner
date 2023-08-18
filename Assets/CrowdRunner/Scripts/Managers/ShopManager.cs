@@ -53,12 +53,19 @@ public class ShopManager : MonoBehaviour
             if (skinIndex == i)
             {
                 shopButtons[i].Selcet();
-                
-                if(shopButtons[i].GetComponent<IncreaseCrowdButton>())
-                    useButtonPriceText.text = shopButtons[i].Price.ToString();
+
+                if (shopButtons[i].GetComponent<IncreaseCrowdButton>())
+                {
+                    useWithPriceButton.GetComponent<ButtonTextItems>().purchasePriceText.text = shopButtons[i].Price.ToString();
+                    useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughPriceText.text = shopButtons[i].Price.ToString();
+                }
                 else
-                    purchaseButtonPriceText.text = shopButtons[i].Price.ToString();
-                
+                {
+                    purchaseButton.GetComponent<ButtonTextItems>().purchasePriceText.text = shopButtons[i].Price.ToString();
+                    purchaseButton.GetComponent<ButtonTextItems>().notEnoughPriceText.text = shopButtons[i].Price.ToString();
+                }
+
+
                 selectedSkinIndex = i;
                 ButtonUpdate(i);
             }
@@ -94,14 +101,14 @@ public class ShopManager : MonoBehaviour
             if (DataManager.instance.Coins < shopButtons[selectedSkinIndex].Price)
             {
                 useWithPriceButton.GetComponent<Button>().interactable = false;
-                useWithPriceButton.GetComponent<ButtonTextItems>().label.SetActive(false);
-                useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(true);
+                useWithPriceButton.GetComponent<ButtonTextItems>().labelTextContainer.SetActive(false);
+                useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughTextContaier.SetActive(true);
             }
             else
             {
                 useWithPriceButton.GetComponent<Button>().interactable = true;
-                useWithPriceButton.GetComponent<ButtonTextItems>().label.SetActive(true);
-                useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(false);
+                useWithPriceButton.GetComponent<ButtonTextItems>().labelTextContainer.SetActive(true);
+                useWithPriceButton.GetComponent<ButtonTextItems>().notEnoughTextContaier.SetActive(false);
             }
         }
         else if(shopButtons[index].IsUnlocked)
@@ -119,14 +126,14 @@ public class ShopManager : MonoBehaviour
             if (DataManager.instance.Coins < shopButtons[selectedSkinIndex].Price)
             {
                 purchaseButton.GetComponent<Button>().interactable = false;
-                purchaseButton.GetComponent<ButtonTextItems>().label.SetActive(false);
-                purchaseButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(true);
+                purchaseButton.GetComponent<ButtonTextItems>().labelTextContainer.SetActive(false);
+                purchaseButton.GetComponent<ButtonTextItems>().notEnoughTextContaier.SetActive(true);
             }
             else
             {
                 purchaseButton.GetComponent<Button>().interactable = true;
-                purchaseButton.GetComponent<ButtonTextItems>().label.SetActive(true);
-                purchaseButton.GetComponent<ButtonTextItems>().notEnoughCoinsText.SetActive(false);
+                purchaseButton.GetComponent<ButtonTextItems>().labelTextContainer.SetActive(true);
+                purchaseButton.GetComponent<ButtonTextItems>().notEnoughTextContaier.SetActive(false);
             }
         }
     }

@@ -31,4 +31,23 @@ public class GameManager : MonoBehaviour
     {
         return gameState == GameState.Game;
     }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Unpause()
+    {
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif        
+    }
 }
