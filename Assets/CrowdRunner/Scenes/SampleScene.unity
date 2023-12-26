@@ -5296,6 +5296,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1866751349}
     m_Modifications:
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1010323141}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddCoins
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DataManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151201, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2792459915560151203, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9961,6 +9993,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: IAPButton
       objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151230, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: price
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792459915560151230, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: isNoAdsButton
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609156403114297459, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_text
+      value: No ADS
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609156403114297460, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609156403114297460, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609156403114297460, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 13.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609156403114297460, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7609156403421735239, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3413b3433b2ee4643b38ca1288e162b4, type: 3}
 --- !u!224 &1428485795 stripped
@@ -12242,7 +12306,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.3095163, y: -0.0000000131612925, z: 0.0000000042840034, w: 0.9508942}
+  m_LocalRotation: {x: 0.30951628, y: 0.000000014776615, z: -0.000000004809792, w: 0.9508942}
   m_LocalPosition: {x: 0, y: 14.5, z: -13.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13342,7 +13406,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849709335}
-  m_LocalRotation: {x: 0.3095163, y: -0.0000000131612925, z: 0.0000000042840034, w: 0.9508942}
+  m_LocalRotation: {x: 0.30951628, y: 0.000000014776615, z: -0.000000004809792, w: 0.9508942}
   m_LocalPosition: {x: 0, y: 14.5, z: -13.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -9,10 +9,13 @@ public class IAPButton : MonoBehaviour
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private int coinsAmount;
     [SerializeField] private float price;
+    [SerializeField] private bool isNoAdsButton = false;
 
     private void Start()
     {
-        coinsAmountText.text = coinsAmount.ToString();
+        if (isNoAdsButton == false)
+            coinsAmountText.text = coinsAmount.ToString();
+
         priceText.text = price.ToString() + "$";
     }
 }
