@@ -73,12 +73,14 @@ public class UIManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(true);
+        AdInitialize.instance.interstitialAd.ShowAd();
     }
 
     public void ShowLevelCompletePanel()
     {
         gamePanel.SetActive(false);
         levelCompletePanel.SetActive(true);
+        AdInitialize.instance.interstitialAd.ShowAd();
     }
 
     public void ShowSettingsPanel()

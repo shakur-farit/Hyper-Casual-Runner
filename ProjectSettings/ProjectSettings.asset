@@ -884,6 +884,7 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Purchasing: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -898,11 +899,11 @@ PlayerSettings:
     m_VersionName: 
   apiCompatibilityLevel: 6
   activeInputHandler: 0
-  cloudProjectId: 
+  cloudProjectId: f286d6ca-1409-4b66-a392-ddc69c443911
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Hyper Casual Runner
+  organizationId: faritshakur
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
