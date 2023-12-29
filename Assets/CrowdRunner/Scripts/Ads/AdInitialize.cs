@@ -27,7 +27,8 @@ public class AdInitialize : MonoBehaviour
             rewardAd.LoadRewardedAd();
         });
     }
-    private void AdsRemovedCheck()
+
+    public void AdsRemovedCheck()
     {
         if (PlayerPrefs.GetInt("RemoveAds") == 1)
             adsRemoved = true;

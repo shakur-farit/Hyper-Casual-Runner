@@ -15,23 +15,29 @@ public class AdsRemover : MonoBehaviour
     private void Start()
     {
         priceText.text = price.ToString() + " $";
-        UpdateRemoveAdsShopButton();
+        UpdateAds();
     }
 
     public void RemoveAds()
     {
         PlayerPrefs.SetInt("RemoveAds", 1);
         Debug.Log("Remove ads");
-        UpdateRemoveAdsShopButton();
+        UpdateAds();
+        AdInitialize.instance.AdsRemovedCheck();
+    }
+
+    private void UpdateAds()
+    {
+        if (PlayerPrefs.GetInt("RemoveAds") == 1)
+        {
+            UpdateRemoveAdsShopButton();
+            UpdateText();
+        }
     }
 
     private void UpdateRemoveAdsShopButton()
     {
-        if (PlayerPrefs.GetInt("RemoveAds") == 1)
-        {
-            button.interactable = false;
-            UpdateText();
-        }
+        button.interactable = false;
     }
 
     private void UpdateText()

@@ -73,14 +73,14 @@ public class UIManager : MonoBehaviour
     {
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(true);
-        AdInitialize.instance.interstitialAd.ShowAd();
+        ShowAds();
     }
 
     public void ShowLevelCompletePanel()
     {
         gamePanel.SetActive(false);
         levelCompletePanel.SetActive(true);
-        AdInitialize.instance.interstitialAd.ShowAd();
+        ShowAds();
     }
 
     public void ShowSettingsPanel()
@@ -116,5 +116,11 @@ public class UIManager : MonoBehaviour
             DataManager.instance.AddCoins(int.Parse(crowdCounter.text));
             
         }
+    }
+
+    private void ShowAds()
+    {
+        if(AdInitialize.instance.adsRemoved == false)
+            AdInitialize.instance.interstitialAd.ShowAd();
     }
 }
